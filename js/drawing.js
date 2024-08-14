@@ -31,16 +31,21 @@ game.drawStructure = function (name, x, y) {
 };
 
 game.drawPlayer = function () {
+  actualPlayerTile =
+    game.player.animations[game.player.direction][
+      game.player.animationFrameNumber % 7
+    ];
+
   game.context.drawImage(
     game.sprites,
+    actualPlayerTile.tileColumn * game.sprite.tileWidth,
+    actualPlayerTile.tileRow * game.sprite.tileHeight,
     game.sprite.tileWidth,
-    game.sprite.tileHeight / 100,
-    game.sprite.canvasHeight / 4,
-    game.sprite.canvasWidth / 6,
+    game.sprite.tileHeight,
     game.sprite.canvasWidth / 2 - game.sprite.tileWidth / 2,
-    game.sprite.canvasHeight / 2 - game.sprite.tileHeight / 2,
-    game.sprite.canvasHeight / 4,
-    game.sprite.canvasWidth / 6
+    game.sprite.canvasHeight / 2.3 - game.sprite.tileHeight / 2,
+    game.sprite.tileWidth,
+    game.sprite.tileHeight
   );
 };
 

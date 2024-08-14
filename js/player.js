@@ -5,7 +5,7 @@ game.player = {
   highestY: 0,
   direction: "left",
   isInAir: false,
-  isDoubleJump: false,
+  // isDoubleJump: false,
   startedJump: false,
   moveInterval: null,
   fallTimeout: function (startingY, time, maxHeight) {
@@ -38,17 +38,24 @@ game.player = {
   animationFrameNumber: 0,
   collidesWithGround: true,
   animations: {
-    // Describe coordinates of consecutive animation frames of objects in textures
-    left: [
+    right: [
+      { tileColumn: 0, tileRow: 0 },
+      { tileColumn: 1, tileRow: 0 },
+      { tileColumn: 2, tileRow: 0 },
+      { tileColumn: 3, tileRow: 0 },
       { tileColumn: 4, tileRow: 0 },
       { tileColumn: 5, tileRow: 0 },
-      { tileColumn: 4, tileRow: 0 },
       { tileColumn: 6, tileRow: 0 },
+      { tileColumn: 7, tileRow: 0 },
     ],
-    right: [
-      { tileColumn: 9, tileRow: 0 },
-      { tileColumn: 8, tileRow: 0 },
-      { tileColumn: 9, tileRow: 0 },
+    left: [
+      { tileColumn: 0, tileRow: 0 },
+      { tileColumn: 1, tileRow: 0 },
+      { tileColumn: 2, tileRow: 0 },
+      { tileColumn: 3, tileRow: 0 },
+      { tileColumn: 4, tileRow: 0 },
+      { tileColumn: 5, tileRow: 0 },
+      { tileColumn: 6, tileRow: 0 },
       { tileColumn: 7, tileRow: 0 },
     ],
   },
@@ -57,7 +64,7 @@ game.player = {
       clearInterval(this.fallInterval);
       game.sounds.jump.play();
       this.isInAir = true;
-      this.isDoubleJump = true;
+      // this.isDoubleJump = true;
       this.startedJump = true;
       var startingY = this.y;
       var time = 1;
@@ -67,20 +74,6 @@ game.player = {
         maxHeight = 0;
       }
       this.fallTimeout(startingY, time, maxHeight);
-    }
-
-    if (this.isInAir && this.isDoubleJump) {
-      clearInterval(this.fallInterval);
-      game.sounds.jump.play();
-      this.startedJump = true;
-      var time = 1;
-      maxHeight = 121;
-      if (type == "fall") {
-        time = 30;
-        maxHeight = 0;
-      }
-      this.fallTimeout(startingY, time, maxHeight);
-      this.isDoubleJump = false;
     }
   },
 };

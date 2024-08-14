@@ -28,18 +28,18 @@ var game = {
   },
   // tạo nhân vật mới
   sprite: {
-    texturesPath: "Knight.png",
-    tileWidth: 32,
-    tileHeight: 32,
+    imageSrc: "Knight.png",
+    tileWidth: 96,
+    tileHeight: 65,
     canvasWidth: window.innerWidth / 3,
-    canvasHeight: window.innerHeight / 4,
+    canvasHeight: window.innerHeight / 3,
   },
   pressedKeys: {},
   init: function (onInit) {
     this.canvas.width = this.options.canvasWidth;
     this.canvas.height = this.options.canvasHeight;
     this.context.imageSmoothingEnabled = false;
-    this.sprites.src = this.sprite.texturesPath; // thêm nhân vật mới
+    this.sprites.src = this.sprite.imageSrc; // thêm nhân vật mới
 
     this.backgrounds["sky"].image.src = "background.png";
     this.backgrounds["trees"].image.src = "trees.png";
