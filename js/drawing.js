@@ -37,7 +37,7 @@ game.drawPlayer = function () {
     ];
 
   game.context.drawImage(
-    game.sprites,
+    game.Sprites,
     actualPlayerTile.tileColumn * game.sprite.tileWidth,
     actualPlayerTile.tileRow * game.sprite.tileHeight,
     game.sprite.tileWidth,

@@ -1,6 +1,7 @@
 // Functions responsible for keyboard events handling
 game.moveLeft = function () {
   game.player.direction = "left";
+  this.Sprites.src = this.sprite.knightLeft;
   game.clearMoveIntervals();
   game.player.moveLeftInterval = setInterval(function () {
     for (var i = 1; i < 120; i++) {
@@ -24,6 +25,7 @@ game.moveLeft = function () {
 
 game.moveRight = function () {
   game.player.direction = "right";
+  this.Sprites.src = this.sprite.knightRight;
   game.clearMoveIntervals();
   game.player.moveRightInterval = setInterval(function () {
     for (var i = 1; i < 120; i++) {

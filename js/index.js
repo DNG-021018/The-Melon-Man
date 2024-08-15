@@ -4,7 +4,7 @@ var game = {
   context: this.canvas.getContext("2d", { alpha: false }),
   counter: document.getElementById("counter"),
   textures: new Image(),
-  sprites: new Image(),
+  Sprites: new Image(),
   drawPending: false,
   backgrounds: {
     sky: {
@@ -28,7 +28,8 @@ var game = {
   },
   // tạo nhân vật mới
   sprite: {
-    imageSrc: "Knight.png",
+    knightRight: "KnightRight.png",
+    knightLeft: "KnightLeft.png",
     tileWidth: 96,
     tileHeight: 65,
     canvasWidth: window.innerWidth / 3,
@@ -39,7 +40,7 @@ var game = {
     this.canvas.width = this.options.canvasWidth;
     this.canvas.height = this.options.canvasHeight;
     this.context.imageSmoothingEnabled = false;
-    this.sprites.src = this.sprite.imageSrc; // thêm nhân vật mới
+    this.Sprites.src = this.sprite.knightRight; // thêm nhân vật mới
 
     this.backgrounds["sky"].image.src = "background.png";
     this.backgrounds["trees"].image.src = "trees.png";
