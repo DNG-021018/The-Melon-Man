@@ -15,7 +15,7 @@ game.moveLeft = function () {
         game.requestRedraw();
         if (!game.checkCollisions()) {
           // Player should fall
-          game.player.jump("fall");
+          game.player.fall();
         }
       }, 3 * i);
     }
@@ -38,7 +38,7 @@ game.moveRight = function () {
           }
           game.requestRedraw();
           if (!game.checkCollisions()) {
-            game.player.jump("fall");
+            game.player.fall();
           }
         }.bind(game),
         3 * i
@@ -66,7 +66,14 @@ game.keydown = function (event) {
         game.moveRight();
         break;
       case 32:
-        game.player.jump();
+        if (!game.player.isInAir) {
+          game.player.jump();
+          console.log("game.player.isInAir: " + game.player.isInAir);
+        }
+
+        if (game.player.isInAir && game.player.isDoubleJump) {
+          game.player.jump();
+        }
         break;
     }
     game.pressedKeys[event.keyCode] = true;
@@ -83,6 +90,16 @@ game.keyup = function (event) {
     case 68:
     case 39:
       clearInterval(game.player.moveRightInterval);
+    case 32:
+      game.player.jumpCount++;
+      console.log(game.player.jumpCount);
+      if (game.player.jumpCount === 2) {
+        game.player.isDoubleJump = false;
+        if (!game.player.isDoubleJump) {
+          game.player.jumpCount = 0;
+          game.player.isDoubleJump = true;
+        }
+      }
       break;
   }
 };

@@ -1,5 +1,5 @@
 game.player = {
-  x: 54,
+  x: 50,
   y: 0,
   height: 30,
   highestY: 0,
@@ -25,7 +25,7 @@ game.player = {
           } else {
             game.isOver = true;
           }
-          if (this.y > 40) {
+          if (this.y > 500) {
             game.isOver = true;
           }
           game.requestRedraw();
@@ -58,20 +58,28 @@ game.player = {
       { tileColumn: 0, tileRow: 0 },
     ],
   },
-  isDoubleJump: false,
-  jump: function (type) {
+  isDoubleJump: true,
+  jumpCount: 0,
+
+  jump: function () {
+    clearInterval(this.fallInterval);
+    game.sounds.jump.play();
+    this.isInAir = true;
+    this.startedJump = true;
+    var startingY = this.y;
+    var time = 1;
+    maxHeight = 121;
+    this.fallTimeout(startingY, time, maxHeight);
+  },
+
+  fall: function () {
     if (!this.isInAir) {
       clearInterval(this.fallInterval);
       game.sounds.jump.play();
       this.isInAir = true;
-      this.startedJump = true;
       var startingY = this.y;
-      var time = 1;
-      maxHeight = 121;
-      if (type == "fall") {
-        time = 30;
-        maxHeight = 0;
-      }
+      var time = 30;
+      maxHeight = 0;
       this.fallTimeout(startingY, time, maxHeight);
     }
   },
