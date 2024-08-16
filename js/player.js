@@ -34,6 +34,17 @@ game.player = {
       12
     );
   },
+  fall: function () {
+    if (!this.isInAir) {
+      clearInterval(this.fallInterval);
+      game.sounds.jump.play();
+      this.isInAir = true;
+      var startingY = this.y;
+      var time = 30;
+      var maxHeight = 0;
+      this.fallTimeout(startingY, time, maxHeight);
+    }
+  },
   animationFrameNumber: 0,
   collidesWithGround: true,
   animations: {
@@ -58,29 +69,16 @@ game.player = {
       { tileColumn: 0, tileRow: 0 },
     ],
   },
+
   isDoubleJump: true,
   jumpCount: 0,
-
-  jump: function () {
+  jump: function (time) {
     clearInterval(this.fallInterval);
     game.sounds.jump.play();
     this.isInAir = true;
     this.startedJump = true;
     var startingY = this.y;
-    var time = 1;
-    maxHeight = 121;
+    var maxHeight = 121;
     this.fallTimeout(startingY, time, maxHeight);
-  },
-
-  fall: function () {
-    if (!this.isInAir) {
-      clearInterval(this.fallInterval);
-      game.sounds.jump.play();
-      this.isInAir = true;
-      var startingY = this.y;
-      var time = 30;
-      maxHeight = 0;
-      this.fallTimeout(startingY, time, maxHeight);
-    }
   },
 };

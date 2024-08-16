@@ -67,13 +67,13 @@ game.keydown = function (event) {
         break;
       case 32:
         if (!game.player.isInAir) {
-          game.player.jump();
-          console.log("game.player.isInAir: " + game.player.isInAir);
+          game.player.jump(1);
         }
 
         if (game.player.isInAir && game.player.isDoubleJump) {
-          game.player.jump();
+          game.player.jump(0.5);
         }
+
         break;
     }
     game.pressedKeys[event.keyCode] = true;
@@ -92,7 +92,6 @@ game.keyup = function (event) {
       clearInterval(game.player.moveRightInterval);
     case 32:
       game.player.jumpCount++;
-      console.log(game.player.jumpCount);
       if (game.player.jumpCount === 2) {
         game.player.isDoubleJump = false;
         if (!game.player.isDoubleJump) {
